@@ -9,9 +9,15 @@ RUN go build -v -o XrayR -trimpath -ldflags "-s -w -buildid=" ./main
 # Release
 FROM  alpine
 # 安装必要的工具包
-RUN  apk --update --no-cache add tzdata ca-certificates \
+RUN  apk --update --no-cache add tzdata ca-certificates curl\
     && cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 RUN mkdir /etc/XrayR/
-COPY --from=builder /app/XrayR /usr/local/bin
+COPY --from=builder /app/XrayR /usr/bin/XrayR/
+COPY config.yml /etc/XrayR/config.yml
+COPY runXrayR.sh  /usr/bin/XrayR/runXrayR.sh
+RUN chmod +x /usr/bin/XrayR/runXrayR.sh
+RUN chmod +x /usr/bin/XrayR/XrayR \
+    && ln -s /usr/bin/XrayR/XrayR /usr/bin/xrayr \
+    && chmod +x /usr/bin/xrayr
 
-ENTRYPOINT [ "XrayR", "--config", "/etc/XrayR/config.yml"]
+ENTRYPOINT [ "sh", "/usr/bin/XrayR/runXrayR.sh"]
