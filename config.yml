@@ -16,7 +16,7 @@ Nodes:
       ApiHost: "http://127.0.0.1:667"
       ApiKey: "55fUxDGFzH3n"
       NodeID: 0
-      NodeType: chyjbd # Node type: V2ray, Trojan, Shadowsocks, Shadowsocks-Plugin
+      NodeType: V2ray # Node type: V2ray, Trojan, Shadowsocks, Shadowsocks-Plugin
       Timeout: 30 # Timeout for the api request
       EnableVless: false # Enable Vless for V2ray Type
       EnableXTLS: false # Enable XTLS for V2ray and Trojan
