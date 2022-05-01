@@ -15,11 +15,6 @@ if [ ! -z "${panel_type}" ]
           sed -i "s|\"SSpanel\"|\"${panel_type}\"|"  "/etc/XrayR/config.yml"
 fi
 
-if [ ! -z "${node_type}" ]
-    then
-          sed -i "s|\"chyjbd\"|\"${node_type}\"|"  "/etc/XrayR/config.yml"
-fi
-
 if [ ! -z "${sspanel_url}" ]
     then
          sed -i "s|\"http://127.0.0.1:667\"|\"${sspanel_url}\"|g" "/etc/XrayR/config.yml"
@@ -37,7 +32,7 @@ fi
 
 if [ ! -z "${node_type}" ]
     then
-         sed -i "s/NodeType: V2ray/nodeid: ${node_type}/g" "/etc/XrayR/config.yml"
+         sed -i "s/NodeType: V2ray/NodeType: ${node_type}/g" "/etc/XrayR/config.yml"
 fi
 
 if [ ! -z "${timeout}" ]
